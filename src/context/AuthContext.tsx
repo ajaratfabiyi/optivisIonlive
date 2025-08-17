@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useEffect } from 'react';
 import { User, AuthContextType } from '../types';
 import * as api from '../services/api';

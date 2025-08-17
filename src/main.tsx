@@ -1,10 +1,9 @@
-
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import i18n from './i18n'; // initialize and import i18next instance
 import { I18nextProvider } from 'react-i18next';
-import { Spinner } from './components/ui/Spinner';
+import { Spinner } from '../components/ui/Spinner';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {

@@ -1,25 +1,24 @@
-
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import { Header } from './components/layout/Header';
-import { Footer } from './components/layout/Footer';
-import { HomePage } from './pages/public/HomePage';
-import { LoginPage } from './pages/public/LoginPage';
-import { SignupPage } from './pages/public/SignupPage';
-import { AboutPage } from './pages/public/AboutPage';
-import { TermsPage } from './pages/public/TermsPage';
-import { PrivacyPage } from './pages/public/PrivacyPage';
-import { ResetPasswordPage } from './pages/public/ResetPasswordPage';
-import { DashboardPage } from './pages/dashboard/DashboardPage';
-import { TestingModeBanner } from './components/ui/TestingModeBanner';
-import { ScrollToTop } from './components/layout/ScrollToTop';
-import { ContactPage } from './pages/public/ContactPage';
-import { FaqPage } from './pages/public/FaqPage';
-import { ForgotPasswordPage } from './pages/public/ForgotPasswordPage';
-import { AdminLoginPage } from './pages/admin/AdminLoginPage';
-import { AdminPage } from './pages/admin/AdminPage';
+import { Header } from '../components/layout/Header';
+import { Footer } from '../components/layout/Footer';
+import { HomePage } from '../pages/public/HomePage';
+import { LoginPage } from '../pages/public/LoginPage';
+import { SignupPage } from '../pages/public/SignupPage';
+import { AboutPage } from '../pages/public/AboutPage';
+import { TermsPage } from '../pages/public/TermsPage';
+import { PrivacyPage } from '../pages/public/PrivacyPage';
+import { ResetPasswordPage } from '../pages/public/ResetPasswordPage';
+import { DashboardPage } from '../pages/dashboard/DashboardPage';
+import { TestingModeBanner } from '../components/ui/TestingModeBanner';
+import { ScrollToTop } from '../components/layout/ScrollToTop';
+import { ContactPage } from '../pages/public/ContactPage';
+import { FaqPage } from '../pages/public/FaqPage';
+import { ForgotPasswordPage } from '../pages/public/ForgotPasswordPage';
+import { AdminLoginPage } from '../pages/admin/AdminLoginPage';
+import { AdminPage } from '../pages/admin/AdminPage';
 
 const rtlLanguages = ['ar'];
 
