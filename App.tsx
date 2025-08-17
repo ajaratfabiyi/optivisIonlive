@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
