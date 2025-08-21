@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
-import { validateEmail, validateInput } from '../../services/api';
+import { validateInput } from '../../services/api';
 import { AuthLayout } from '../../components/layout/AuthLayout';
 import { PasswordInput } from '../../components/ui/PasswordInput';
 
@@ -15,7 +14,7 @@ export const AdminLoginPage: React.FC = () => {
     const { adminLogin } = useAuth();
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
+    const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -25,9 +24,9 @@ export const AdminLoginPage: React.FC = () => {
         setError('');
         setIsLoading(true);
         try {
-            validateEmail(email);
+            validateInput(identifier, 'Email or Username');
             validateInput(password, 'Password');
-            await adminLogin(email, password);
+            await adminLogin(identifier, password);
             navigate('/admin');
         } catch(err: any) {
             setError(err.message || 'Failed to login as admin.');
@@ -47,14 +46,14 @@ export const AdminLoginPage: React.FC = () => {
             <form onSubmit={handleLogin} className="w-full space-y-6">
                  {error && <div className="bg-error/10 border border-error text-error p-3 rounded-md text-sm">{error}</div>}
                  <Input
-                    placeholder={t('admin.loginPage.emailPlaceholder')}
-                    id="admin-email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Admin Email or Username"
+                    id="admin-identifier"
+                    type="text"
+                    value={identifier}
+                    onChange={(e) => setIdentifier(e.target.value)}
                     required
                     className={inputClasses}
-                    aria-label="Admin Email"
+                    aria-label="Admin Email or Username"
                 />
                 <PasswordInput
                     id="admin-password"

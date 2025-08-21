@@ -1,6 +1,6 @@
-import { User, Transaction, JWTTokenResponse, TwoFactorRequiredResponse, KycStatusResponse, WithdrawalRequest, KycRequest, AdminStats, DashboardStats, TeamMember } from '../types';
+import { User, Transaction, JWTTokenResponse, TwoFactorRequiredResponse, KycStatusResponse, WithdrawalRequest, KycRequest, AdminStats, DashboardStats, TeamMember, RegistrationIntentResponse, LoginResponse } from '../types';
 
-const API_BASE_URL = 'https://optivison-backend.onrender.com';
+const API_BASE_URL = 'https://optivus-backend.onrender.com';
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
@@ -61,19 +61,19 @@ export const validateInput = (input: string, fieldName: string) => {
 
 // --- Authentication & Users ---
 
-export const login = (email: string, password: string): Promise<JWTTokenResponse | TwoFactorRequiredResponse> => 
-    apiRequest(`/users/login/`, 'POST', { email, password });
+export const login = (login_identifier: string, password: string): Promise<LoginResponse> => 
+    apiRequest(`/users/login/`, 'POST', { login_identifier, password });
 
-export const verifyTwoFactor = (userId: string, token: string): Promise<JWTTokenResponse> =>
-    apiRequest(`/users/2fa/verify/`, 'POST', { user_id: userId, token });
-
-export const register = (data: Omit<any, 'confirmPassword'>): Promise<void> =>
+export const initiateRegistration = (data: Omit<any, 'confirmPassword'>): Promise<RegistrationIntentResponse> =>
     apiRequest(`/users/register/`, 'POST', {
         email: data.email,
         username: data.username,
         password: data.password,
-        referral_code: data.referralCode
+        referralCode: data.referralCode
     });
+
+export const confirmRegistration = (data: Omit<any, 'confirmPassword'> & { paymentIntentId: string }): Promise<void> =>
+    apiRequest(`/users/register/confirm/`, 'POST', data);
     
 export const getProfile = (): Promise<User> => apiRequest('/users/profile/', 'GET');
 

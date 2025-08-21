@@ -10,6 +10,15 @@ export interface TwoFactorRequiredResponse {
     user_id: string;
 }
 
+export interface RegistrationIntentResponse {
+  clientSecret: string;
+}
+
+export interface LoginResponse extends User {
+  access_token: string;
+  refresh_token: string | null;
+}
+
 // --- User Types ---
 
 export interface User {
@@ -27,19 +36,18 @@ export interface User {
   role: 'user' | 'admin';
   status: 'active' | 'frozen';
   withdrawalStatus: 'active' | 'paused';
+  created_at: string;
+  updated_at: string;
 }
 
 export interface AuthContextType {
   isAuthenticated: boolean;
   user: User | null;
   isLoading: boolean;
-  login: (email: string, pass: string) => Promise<{ twoFactorRequired: boolean, userId?: string } | void>;
-  adminLogin: (email: string, pass: string) => Promise<void>;
-  verifyTwoFactor: (userId: string, token: string) => Promise<void>;
-  isAwaiting2FA: boolean;
+  login: (identifier: string, pass: string) => Promise<void>;
+  adminLogin: (identifier: string, pass: string) => Promise<void>;
   isAdmin: boolean;
   logout: () => void;
-  signup: (details: any) => Promise<void>;
   updateUser: (newUser: Partial<User>) => void;
 }
 

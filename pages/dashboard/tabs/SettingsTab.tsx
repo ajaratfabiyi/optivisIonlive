@@ -196,6 +196,7 @@ const Manage2FA = () => {
             
             <Modal isOpen={isModalOpen} onClose={closeModal} title={t(modalContent === 'enable' ? 'dashboard.settings.2fa.enableModalTitle' : 'dashboard.settings.2fa.disableModalTitle')}>
                 {/* Modal content is removed as it's a non-functional mock */}
+                <div />
             </Modal>
         </>
     );

@@ -1,4 +1,3 @@
-
 // --- API & Base Types ---
 
 export interface JWTTokenResponse {
@@ -10,6 +9,11 @@ export interface TwoFactorRequiredResponse {
     two_factor_required: true;
     user_id: string;
 }
+
+export interface RegistrationIntentResponse {
+  clientSecret: string;
+}
+
 
 // --- User Types ---
 
@@ -40,7 +44,6 @@ export interface AuthContextType {
   isAwaiting2FA: boolean;
   isAdmin: boolean;
   logout: () => void;
-  signup: (details: any) => Promise<void>;
   updateUser: (newUser: Partial<User>) => void;
 }
 

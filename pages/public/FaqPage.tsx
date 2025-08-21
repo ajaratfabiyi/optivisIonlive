@@ -11,12 +11,12 @@ interface FaqItem {
 
 export const FaqPage: React.FC = () => {
     const { t } = useTranslation();
-    const faqs: FaqItem[] = t('faqPage.faqs', { returnObjects: true });
+    const faqs = t('faqPage.faqs', { returnObjects: true });
 
     return (
         <PageWrapper title={t('faqPage.title')}>
             <div className="space-y-2">
-                {Array.isArray(faqs) && faqs.map((faq, index) => (
+                {Array.isArray(faqs) && (faqs as FaqItem[]).map((faq, index) => (
                     <AccordionItem key={index} title={faq.question}>
                         <p>{faq.answer}</p>
                     </AccordionItem>

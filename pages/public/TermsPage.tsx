@@ -10,7 +10,7 @@ type TermsSection = {
 
 export const TermsPage: React.FC = () => {
     const { t } = useTranslation();
-    const sections: TermsSection[] = t('termsPage.sections', { returnObjects: true });
+    const sections = t('termsPage.sections', { returnObjects: true });
 
     return (
         <PageWrapper title={t('termsPage.title')}>
@@ -20,7 +20,7 @@ export const TermsPage: React.FC = () => {
 
             <p className="mb-6">{t('termsPage.intro')}</p>
 
-            {Array.isArray(sections) && sections.map((section, index) => (
+            {Array.isArray(sections) && (sections as TermsSection[]).map((section, index) => (
                 <section key={index}>
                     <h2>{section.title}</h2>
                     {section.content.map((paragraph, pIndex) => {

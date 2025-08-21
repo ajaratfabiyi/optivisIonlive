@@ -97,22 +97,6 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
       }
   }
 
-  const signup = async (details: any): Promise<void> => {
-      setIsLoading(true);
-      try {
-        // Backend API registers and returns a user object directly.
-        // The frontend's multi-step payment flow is not supported by the backend docs.
-        await api.register(details);
-        // After successful registration, log the user in.
-        await login(details.email, details.password);
-      } catch (error) {
-        console.error(error);
-        throw error instanceof Error ? error : new Error('An unknown error occurred during signup.');
-      } finally {
-          setIsLoading(false);
-      }
-  };
-
   const logout = () => {
     setUser(null);
     setIsAuthenticated(false);
@@ -142,7 +126,6 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
     verifyTwoFactor,
     isAwaiting2FA,
     logout,
-    signup,
     updateUser,
   };
 

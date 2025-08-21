@@ -10,10 +10,10 @@ type PrivacySection = {
 
 export const PrivacyPage: React.FC = () => {
     const { t } = useTranslation();
-    const sections: PrivacySection[] = t('privacyPage.sections', { returnObjects: true });
+    const sections = t('privacyPage.sections', { returnObjects: true });
   return (
     <PageWrapper title={t('privacyPage.title')}>
-      {Array.isArray(sections) && sections.map((section, index) => (
+      {Array.isArray(sections) && (sections as PrivacySection[]).map((section, index) => (
         <section key={index}>
             <h2>{section.title}</h2>
             {section.content.map((paragraph, pIndex) => (
